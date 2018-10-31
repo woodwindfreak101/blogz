@@ -10,6 +10,7 @@
             {% for blog in blogs %}
             <li><h2><a href="?key_id={{blog.id}}">{{blog.title}}</a></h2></li>
             <li>{{blog.body}}</li>
+            <li class="author">written by <a href="?user_id={{blog.owner_id}}"> {{blog.owner.username}}</a></li>
             <hr />
             {% endfor %}
         </ul>

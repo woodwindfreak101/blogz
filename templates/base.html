@@ -7,8 +7,32 @@
         </style>
     </head>
 <body>
-    <p><a href="blog">Main Blog Page</a></p>
-    <p><a href="newpost">Add a Blog Post</a></p>
+    <div>
+        {% if 'user' in session %}
+            {{session['user'] }}
+            <form action='/logout' method='post'>
+            <input type='submit' value='Logout' />
+        </form>
+    {% else %}
+        <a href='login'>Login</a>
+        <br>
+        <a href='signup'>Make an Account</a>
+    {% endif %}
+    </div>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <ul class=flashes>
+            {% for message in messages %}
+            <li>{{ message}}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    {% endwith %}
+    <header>
+        <p><a href="blog">Main Blogz Page</a></p>
+        <p><a href="newpost">Add New Post Here</a></p>
+        <p><a href="/">Home of Users</a></p>
+    </header>
 
     {% block content %}
     {% endblock %}
